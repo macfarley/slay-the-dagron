@@ -4,17 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slay the Dagron</title>
-    <script defer src="./app.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <script defer src="/js/data.js"></script>
+    <script defer src="/js/app.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-    <div id="startScreen"><h1>Take Notice!</h1>
-    <p>Hero Needed
-    Slay the Dagron</p>
-</div>
-    <img class="center" src="./img/dagron.png" alt="Big Scary Dagron">
+  <h1>macfarley and Extra G Data Solutions present...</h1>
+  
+  <main>
+  <h2>Slay the Dagron</h2>
+  <img id="dagronImg" src="img/dagron.png" alt="big scary Dagron">
+  <p id="gameUpdate">Message to the player</p>
+  <div class="tg-wrap">
+    <table><thead>
+    <tr>
+      <th>Dagron HP</th>
+      <th>Villagers</th>
+      <th>Your HP</th>
+    </tr></thead>
+  <tbody>
+    <tr>
+      <td id="dagronHp">0</td>
+      <td id="villagerCount">0</td>
+      <td id="warriorHp">0</td>
+    </tr>
+  </tbody>
+  </table></div>
+  <div id="playerOptions">
+    <button id="attack"> <img class="icon" src="img/spear.avif" alt="spear">
+      Attack!</button>
+    <button id="defend"><img class="icon" src="img/shield.jpg" alt="shield">Cover!</button>
+    <button id="heal"> <img class="icon" src="img/potion.webp" alt="potion"> Heal!</button>
+  </div>
+  </main>
+
+
 </body>
 </html>
