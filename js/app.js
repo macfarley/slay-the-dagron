@@ -7,7 +7,6 @@ const warriorMsgEl = document.querySelector('#warriorMessage')
 const dagronHpEl = document.querySelector('#dagronHp')
 const villagerCountEl = document.querySelector('#villagerCount')
 const warriorHpEl = document.querySelector('#warriorHp')
-const buttonEls = document.querySelectorAll('.choiceButtonEl')
 const resetButtonEl = document.querySelector('#resetButton')
 
 //dice bag
@@ -45,8 +44,16 @@ function render(){
 
 //event listeners
 //all the buttons
+document.querySelectorAll('button').forEach((button)=>{
+    button.addEventListener('click', handleClick);
+  });
 
-
+//warrior choices
+const getPlayerChoice = (event) => {
+    //where event is the click
+        playerChoice = event.target.id;
+        //the name of the thing you clicked
+    };
 //stuff the dragon does
 function actionDie(){
     actions[dSix]
@@ -92,21 +99,25 @@ function dragonFire(){
 
 //run through what happens when you click
 function handleClick(event){
+    getPlayerChoice(event)
 //pass the id of the button to tell the computer what the player chose
-    let playerChoice = event.target.id;
     console.log(playerChoice)
 //check if game is already over
     if(gameOver == true){
+        dagronMsg = "GAME OVER"
+        warriorMsg = "Would you like to play again?"
+        resetButtonEl.innerText = "Play Again?"
+        return
+    }else{
 //determine what the dragon is doing this round
     actionDie()
 // warrior has 3 options: attack, defend, heal
-    getPlayerChoice()
     if(playerChoice == 'attack'){
         spearAttack()
-    }else if(playerChoice == 'defend'){
+        }else if(playerChoice == 'defend'){
         //defend =take cover, halves incoming damage this round
         takeCover()
-    }else if(playerChoice == 'heal'){
+        }else if(playerChoice == 'heal'){
         healthPot()
     }}
     // render()

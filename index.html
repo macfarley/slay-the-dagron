@@ -9,42 +9,55 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
     <script defer src="/js/data.js"></script>
     <script defer src="/js/app.js"></script>
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
+    
 
 </head>
+
 <body>
-  <h1>macfarley and Extra G Data Solutions present...</h1>
-  <button id="resetButton">Reset the Game</button>
-  <main>
-  <h2>Slay the Dagron</h2>
-  <img id="dagronImg" src="img/dagron.png" alt="big scary Dagron">
-  <article><p id="dagronMessage">The Dagron is destroying the village and eating the villagers.</p>
-  <p id="warriorMessage">Throw spears until the Dagron is defeated!</p>
-  </article>
-  <div class="tg-wrap">
-    <table><thead>
-    <tr>
-      <th>Dagron HP</th>
-      <th>Villagers</th>
-      <th>Your HP</th>
-    </tr></thead>
-  <tbody>
-    <tr>
-      <td id="dagronHp">0</td>
-      <td id="villagerCount">0</td>
-      <td id="warriorHp">0</td>
-    </tr>
-  </tbody>
-  </table></div>
-  <div id="playerOptions">
-    <button class="choiceButtonEl" id="attack"> <img class="icon" src="img/spear.avif" alt="spear">
-      Attack!</button>
-    <button class="choiceButtonEl" id="defend"><img class="icon" src="img/shield.jpg" alt="shield">Cover!</button>
-    <button class="choiceButtonEl" id="heal"> <img class="icon" src="img/potion.webp" alt="potion"> Heal!</button>
+<section class="layout">
+  <div class="header">
+    <h1>Slay the Dagron</h1>
   </div>
-  </main>
-
-
+  
+  <div class="leftSide">
+    <div class="choices"><img class="icon" src="https://static.vecteezy.com/system/resources/thumbnails/041/857/869/small/ai-generated-ancient-war-spear-isolated-on-transparent-background-free-png.png" alt="spear"><button id="attackButton">Attack!</button>
+    </div>
+    <div class="choices"><img class="icon" src="img/shield.png" alt="shield"><button id="defendButton">Defend!</button>
+    </div>
+  </div>
+  
+  <div class="main">
+    <article class="messages">
+      <p id="dagronMessage">The Dagron is destroying the village and eating the villagers.</p>
+      <p id="warriorMessage">Throw spears until the Dagron is defeated!</p>
+    </article>
+    <article class="winConditions">
+      <div>Dagron HP</div>
+      <div>Warrior HP</div>
+      <div>Villagers Left</div>
+      <div class="counters" id="dagronHp">200</div>
+      <div class="counters" id="warriorHp">100</div>
+      <div class="counters" id="villagerCount">50</div>
+    </article>
+    <div><button id="resetButton">Reset the Game</button>
+    </div>
+  </div>
+  
+  <div class="rightSide">
+    <div class="choices"><img class="icon" src="img/potion.png" alt="potion"><button id="healButton">Heal!</button>
+    </div>
+    <div class="choices"><img class="icon" src="img/boots.png" alt="boots"><button id="fleeButton">Flee!</button>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div><h2>Presented by macfarley and Extra G Data Solutions</h1>
+      </div>
+    <div><h3></h3>Special Thanks to: <a href="https://www.vecteezy.com/free-png/potion">Potion PNGs by Vecteezy</a>
+      <a href="https://www.vecteezy.com/free-png/spear">Spear PNGs by Vecteezy</a>
+      <a href="https://www.vecteezy.com/free-photos/parchment-paper-background">Parchment Paper Background Stock photos by Vecteezy</a></div>
+  </div>
+</section>
 </body>
 </html>
