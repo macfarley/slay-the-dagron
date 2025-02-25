@@ -4,11 +4,11 @@ console.log('game loaded')
 //cached html stuff here
 const dagronMsgEl = document.querySelector('#dagronMessage')
 const warriorMsgEl = document.querySelector('#warriorMessage')
-const playerOptions = document.querySelector('#playerOptions')
-const buttons = playerOptions.querySelectorAll('button')
 const dagronHpEl = document.querySelector('#dagronHp')
 const villagerCountEl = document.querySelector('#villagerCount')
 const warriorHpEl = document.querySelector('#warriorHp')
+const buttonEls = document.querySelectorAll('.choiceButtonEl')
+const resetButtonEl = document.querySelector('#resetButton')
 
 //dice bag
 const dTwenty = Math.floor(Math.random() * 20) +1;
@@ -17,10 +17,11 @@ const dTen = Math.floor(Math.random() * 10) +1;
 
 //other variables
 let incomingDmg = 0;
-let breath = true
-let flying = false
-let playerChoice = 'attack'
-let casualties = 0
+let breath = true;
+let flying = false;
+let playerChoice = '';
+let casualties = 0;
+let gameOver = false;
 const actions= [biteAttack(), smashBuilding(), fly(), tailAttack(), dragonFire(), dragonFire()]
 
 //display stuff to the user
@@ -44,12 +45,6 @@ function render(){
 
 //event listeners
 //all the buttons
-buttons.forEach(button =>{
-    button.addEventListener('click', handleClick);
-})
-
-
-
 
 
 //stuff the dragon does
@@ -83,7 +78,7 @@ function tailAttack(){
 }
 function dragonFire(){
     //starts off with true breath, then a 5 or 6 recharges it
-        if(dagron.breath == true){
+        if(dagron.breath === true){
         incomingDmg = (dSix+ dSix+ dSix+ dSix+ dSix)
         //burnt villagers
         casualties = dSix
@@ -96,26 +91,25 @@ function dragonFire(){
     }
 
 //run through what happens when you click
-function handleClick(){
-    const getPlayerChoice = (event) => {
-        //where event is the click
-            playerChoice = event.target.id;
-            console.log(playerChoice)
-            //the name of the thing you clicked
-        };
+function handleClick(event){
+//pass the id of the button to tell the computer what the player chose
+    let playerChoice = event.target.id;
+    console.log(playerChoice)
+//check if game is already over
+    if(gameOver == true){
 //determine what the dragon is doing this round
     actionDie()
-// warrior has 3 options: spear, shield, potion
+// warrior has 3 options: attack, defend, heal
     getPlayerChoice()
     if(playerChoice == 'attack'){
         spearAttack()
     }else if(playerChoice == 'defend'){
         //defend =take cover, halves incoming damage this round
         takeCover()
-    }else if(playerChoice == 'potion'){
+    }else if(playerChoice == 'heal'){
         healthPot()
-    }
-    render()
+    }}
+    // render()
 }
 
 
