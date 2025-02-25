@@ -2,12 +2,12 @@
 console.log('game loaded')
 
 //cached html stuff here
-const dagronMsgEl = document.querySelector('#dagronMessage')
-const warriorMsgEl = document.querySelector('#warriorMessage')
-const dagronHpEl = document.querySelector('#dagronHp')
-const villagerCountEl = document.querySelector('#villagerCount')
-const warriorHpEl = document.querySelector('#warriorHp')
-const resetButtonEl = document.querySelector('#resetButton')
+let dagronMsgEl = document.querySelector('#dagronMessage')
+let warriorMsgEl = document.querySelector('#warriorMessage')
+let dagronHpEl = document.querySelector('#dagronHp')
+let villagerCountEl = document.querySelector('#villagerCount')
+let warriorHpEl = document.querySelector('#warriorHp')
+let resetButtonEl = document.querySelector('#resetButton')
 
 //dice bag
 const dTwenty = Math.floor(Math.random() * 20) +1;
@@ -122,6 +122,13 @@ function handleClick(event){
     }}
     // render()
 }
+// if there's time, a rolling new total for health and stuff
+// setTimeout(() => {
+//     // Code to be executed after 1 second
+//     for (let i = 1; i<= 100; i++) {
+//         dagronHpEl.innerText = i
+//       }
+//   }, 100);
 
 
 
