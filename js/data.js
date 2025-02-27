@@ -4,7 +4,7 @@ const warrior = {
     attackRoll: 8,
     spears: 100,
     shield: false,
-    villagers: 100,
+    villagers: 50,
 }
 const dagron = {
     health: 200,
