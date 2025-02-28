@@ -28,6 +28,7 @@ let shield = false;
 let casualties = 0;
 let villagersLeft = warrior.villagers
 let gameOver = false;
+let dagronChoice = 0;
 const actions= [biteAttack(), smashBuilding(), fly(), tailAttack(), dragonFire(), dragonFire()]
 
 //display stuff to the user
@@ -90,9 +91,9 @@ function healthPot(){
     warriorCurrentHP = warriorCurrentHP+vitality
 }
 //flee or boots button
-function flee(){
-    gameOver = true;
-    warriorMsg = "You live to fight another day, but at what cost?  You may have survived, but the Village is lost."
+function runAway(){
+    gameOver = true
+    warriorMsg = `You live to fight another day, but at what cost?  You may have survived, but the Village is lost.`
     dagronMsg = "GAME OVER"
 }
 //if the player clicks reset
@@ -109,7 +110,9 @@ function resetGame(){
 
 //stuff the dragon does
 function actionDie(){
-    actions[dSix]
+    dagronChoice = dSix
+    console.log(dagronChoice)
+    actions[dagronChoice]
     }
 function biteAttack(){
     if(dTwenty+ dagron.attackRoll >= warrior.defense){
@@ -178,11 +181,22 @@ function checkForWin(){
 }
 //if villagers or HP reaches 0
 function checkForLoss(){
+    if(warriorCurrentHP > 0 && villagersLeft > 0){
+        return
+    }
     if(warriorCurrentHP <=0){
+        gameOver = true
         const victoryMsg = document.createElement('h2')
         victoryMsg.innerText = `Seeing their most capable warrior lain low by the Dagron, the remaining ${villagersLeft} Villagers flee into the countryside.  Your heroic sacrifice would surely be remembered in song, if the Dagron hadn't burned all the instruments.`
         const tippyTopEl = document.querySelector('#tippyTop')
-        tippyTopEl.appendChild('victoryMsg')
+        tippyTopEl.appendChild('victoryMsg')}
+    else{ if(villagersLeft <= 0){
+            gameOver = true
+            const victoryMsg = document.createElement('h2')
+            warriorMsg = `You live to fight another day, but at what cost?  You may have survived, but the Village is lost.`
+            victoryMsg.innerText = "GAME OVER"
+            victoryMsg.insertAdjacentElement(afterend, h1)
+            }
     }
 }
  //at the end of the handleClick, set up for next turn
@@ -190,8 +204,11 @@ function nextTurn(){
     incomingDmg = 0;
     warriorDmg = 0;
     flying = false;
+    shield = false;
     playerChoice = '';
     casualties = 0;
+    dagronMsg = ''
+    warriorMsg = ''
 }
 
 //run through what happens when you click
