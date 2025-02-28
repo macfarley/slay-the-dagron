@@ -74,6 +74,7 @@ p{
 
 .icon{
   width: 15vh;
+  cursor: pointer;
 }
 
 #dagronImg {

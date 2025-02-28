@@ -3,10 +3,10 @@
 
 ## How to play
 Choose an action
-    + Attack
-    + Tuck and Roll
+    + Attack (Spear)
+    + Defend (Shield)
     + Drink a Healing Potion
-    + Flee
+    + Flee (boots)
 
 ### How to Win
 Bring the Dagron to 0HP before yours run out, and before the Dagron kills all the villagers.  The surviving villagers becomes your score.

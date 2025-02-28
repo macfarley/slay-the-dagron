@@ -16,21 +16,21 @@
 
 <body>
 <section class="layout">
-  <div class="header">
+  <div id="tippyTop" class="header">
     <h1>Slay the Dagron</h1>
   </div>
   
   <div class="leftSide">
-    <div class="choices"><img class="icon" src="/img/spear.png" alt="spear"><button id="attackButton">Attack!</button>
+    <div class="choices"><img data-action="attackButton" class="icon" src="/img/spear.png" alt="spear" id="spearPic"><button data-action="attackButton" id="attackButton">Attack!</button>
     </div>
-    <div class="choices"><img class="icon" src="img/shield.png" alt="shield"><button id="defendButton">Defend!</button>
+    <div class="choices"><img data-action="defendButton" class="icon" src="img/shield.png" alt="shield" id="shieldPic"><button data-action="defendButton" id="defendButton">Defend!</button>
     </div>
   </div>
   
   <div class="main">
     <article class="messages">
-      <p id="dagronMessage">A legendary and ferocious Dagron is destroying the village and eating the villagers.</p>
       <p id="warriorMessage">Throw spears until the Dagron is defeated!</p>
+      <p id="dagronMessage">A legendary and ferocious Dagron is destroying the village and eating the villagers.</p>
     </article>
     <article class="winConditions">
       <div>Dagron HP</div>
@@ -40,14 +40,14 @@
       <div class="counters" id="warriorHp">100</div>
       <div class="counters" id="villagerCount">50</div>
     </article>
-    <div><button id="resetButton">Reset the Game</button>
+    <div><button data-action="resetButton" id="resetButton">Reset the Game</button>
     </div>
   </div>
   
   <div class="rightSide">
-    <div class="choices"><img class="icon" src="img/potion.png" alt="potion"><button id="healButton">Heal!</button>
+    <div class="choices"><img data-action="healButton" class="icon" src="img/potion.png" alt="potion" id="potionPic"><button id="healButton" data-action="healButton">Heal!</button>
     </div>
-    <div class="choices"><img class="icon" src="img/boots.png" alt="boots"><button id="fleeButton">Flee!</button>
+    <div class="choices"><img data-action="fleeButton" class="icon" src="img/boots.png" alt="boots" id="bootsPic"><button data-action="fleeButton" id="fleeButton">Flee!</button>
     </div>
   </div>
   

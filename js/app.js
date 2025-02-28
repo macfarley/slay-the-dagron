@@ -8,12 +8,17 @@ let dagronHpEl = document.querySelector('#dagronHp')
 let villagerCountEl = document.querySelector('#villagerCount')
 let warriorHpEl = document.querySelector('#warriorHp')
 let resetButtonEl = document.querySelector('#resetButton')
+let pictureButtons = document.querySelectorAll('.icon')
 
 //dice bag
-const dTwenty = Math.floor(Math.random() * 20) +1;
-const dSix = Math.floor(Math.random() * 6) +1;
-const dTen = Math.floor(Math.random() * 10) +1;
-
+function dTwenty(){
+    return Math.floor(Math.random() * 20) +1;
+}
+function dSix(){
+    return Math.floor(Math.random() * 6) +1;}
+function dTen(){
+    return Math.floor(Math.random() * 10) +1;
+}
 //other variables
 let incomingDmg = 0;
 let warriorDmg = 0;
@@ -29,7 +34,8 @@ let casualties = 0;
 let villagersLeft = warrior.villagers
 let gameOver = false;
 let dagronChoice = 0;
-const actions= [biteAttack(), smashBuilding(), fly(), tailAttack(), dragonFire(), dragonFire()]
+let vitality = 0;
+const actions= [biteAttack, smashBuilding, fly, tailAttack, dragonFire, dragonFire]
 
 //display stuff to the user
 function updateMessage (){
@@ -55,26 +61,31 @@ function render(){
 document.querySelectorAll('button').forEach((button)=>{
     button.addEventListener('click', handleClick);
   });
+// all the pictures
+pictureButtons.forEach((icon)=>{
+    icon.addEventListener('click', handleClick)});
 //warrior choices
 const getPlayerChoice = (event) => {
     //where event is the click
-        playerChoice = event.target.id;
+        playerChoice = event.target.dataset.action;
         //the name of the thing you clicked
+        console.log('playerChoice')
     };
 //if the player chooses attack
 function spearAttack(){
     //can't hit a flying dragon
     if(flying != true){
     //test attack roll vs defense, a hit meets or beats, roll damage
-        if(warrior.attackRoll+ dTwenty >= dagron.defense){
-        warriorDmg = (dTen+dTen)+4
-        console.log('hit', warriorDmg)
+        if(warrior.attackRoll+ dTwenty() >= dagron.defense){
+        warriorDmg = (dTen()+dTen())+4
+        console.log(`attack hits for ${warriorDmg}`)
         warriorMsg = `Your aim is true, your spear pierces the Dagron's hide doing ${warriorDmg} damage to the beast.`} 
         else{
+            console.log('attack misses')
         warriorMsg = "Your spear falls short. Quick, keep throwing!"}
     } else if(flying == true){
         warriorMsg = "The dragon flies out of range, your spears fall short. Quick, keep throwing!"
-        flying = false
+        flying = false;
         }
     dagronCurrentHP = dagronCurrentHP - warriorDmg
 }
@@ -86,7 +97,8 @@ function defend(){
 //potion button
 function healthPot(){
     //10d6+10
-    vitality = (dSix+dSix+dSix+dSix+dSix+dSix+dSix+dSix+dSix+dSix)+10;
+    vitality = (dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix())+10;
+    console.log(vitality)
     warriorMsg = `You feel a rush of vitality when you quaff a potion and heal for ${vitality} Hit Points`
     warriorCurrentHP = warriorCurrentHP+vitality
 }
@@ -94,7 +106,7 @@ function healthPot(){
 function runAway(){
     gameOver = true
     warriorMsg = `You live to fight another day, but at what cost?  You may have survived, but the Village is lost.`
-    dagronMsg = "GAME OVER"
+    dagronMsg = 'GAME OVER'
 }
 //if the player clicks reset
 function resetGame(){
@@ -106,64 +118,75 @@ function resetGame(){
     dagronMsg = "A legendary and ferocious Dagron is destroying the village and eating the villagers."
     warriorMsg = "Throw spears until the Dagron is defeated!"
     render()
+    console.log('game reset')
+ 
 }
 
 //stuff the dragon does
 function actionDie(){
-    dagronChoice = dSix
-    console.log(dagronChoice)
-    actions[dagronChoice]
+    dagronChoice = dSix()
+    console.log(`action dice roll is ${dagronChoice}`)
+    actions[dagronChoice -1]()
     }
 function biteAttack(){
     if(dTwenty+ dagron.attackRoll >= warrior.defense){
-        incomingDmg = (dTen + dTen +6)
+        incomingDmg = (dTen() + dTen() +6)
         dagronMsg = `The Dagron's mighty jaws close around you in a ferocious bite, dealing ${incomingDmg} damage with tooth and flame.`
-    } else{
+        } else{
         dagronMsg = "The Dagron snaps his jaws at you but you narrowly escape."
         }
     if(shield == true){
-    warriorCurrentHP = warriorHpEl.innerText - (incomingDmg/2)}
+        warriorCurrentHP = warriorHpEl.innerText - (incomingDmg/2)
+        shield = false
+        return}
         else{warriorCurrentHP = warriorCurrentHP - incomingDmg}
     }
 function smashBuilding(){
     if(shield == true){
         dagronMsg = 'The dagron smashes a nearby building but due to your quick thinking the villagers were able to evacuate.'
-    } else{
-    casualties = (dSix +dSix)
+        shield = false;
+    } else if(shield == false){
+    casualties = dSix() +dSix()
+    console.log(`${casualties} smashed`)
     dagronMsg = `The dragon smashes a nearby building in a rage and ${casualties} villagers were crushed under the rubble.`
     villagersLeft = villagerCountEl.innerText - casualties
     }}
 function fly(){
+    console.log('fly')
     flying = true
     dagronMsg = "The draon takes flight and swoops out of range."
 }
 function tailAttack(){
-    if(dTwenty+10 >= warrior.defense){
-        incomingDmg = (dSix+dSix+dSix+6)
-        casualties = Math.floor(dSix/2)
+    if(dTwenty()+10 >= warrior.defense){
+        incomingDmg = (dSix()+dSix()+dSix()+6)
+        casualties = Math.floor(dSix()/2)
         dagronMsg = `The Dagron's mighy tail sweeps through the street dealing ${incomingDmg} damage to you and killing ${casualties} innocent villagers in the crossfire.`
         villagersLeft = villagersLeft- casualties
-    } else {
+        } else {
         dagronMsg = `You manage to dodge a sweep of the Dagron's tail.  If only the ${casualties} nearby villagers were as nimble as you.`
     }
     if(shield == true){
-        warriorCurrentHP = warriorHpEl.innerText - (incomingDmg/2)}
-            else{warriorCurrentHP = warriorHpEl.innerText - incomingDmg}
+        warriorCurrentHP = warriorHpEl.innerText - Math.floor(incomingDmg/2)
+        shield = false;}
+            else{warriorCurrentHP = warriorHpEl.innerText - incomingDmg;}
 }
 function dragonFire(){
     //starts off with true breath, then a 5 or 6 recharges it
     if(breath == true){
     //5d6 fire damage
-        incomingDmg = (dSix+ dSix+ dSix+ dSix+ dSix)
+        incomingDmg = (dSix()+ dSix()+ dSix()+ dSix()+ dSix())
         //burnt villagers
-        casualties = dSix
+        casualties = dSix()
+        console.log(`${incomingDmg} damage, ${casualties} killed`)
         dagronMsg = `A gout of white-hot flame erupts from the Dagron's maw, frying you inside your armor for ${incomingDmg} and scorching ${casualties} unlucky villagers.`
         breath = false
+        villagersLeft = villagersLeft - casualties
         //player chooses defend, damage is halved
         if(shield == true){
-            warriorCurrentHP = warriorHpEl.innerText - (incomingDmg/2)}
-                else{warriorCurrentHP = warriorHpEl.innerText - incomingDmg}
-    }else {
+            warriorCurrentHP = warriorCurrentHP - Math.floor(incomingDmg/2)}
+                else{warriorCurrentHP = warriorCurrentHP - incomingDmg}
+        return
+    }else if(breath == false){
         //charge up breath, next 5 or 6 on action die breathes fire
             breath = true
             dagronMsg = "The Dagron rears back and a great wind fills its capacious lungs. Beware! The next burst of flame could come at any second."
@@ -177,6 +200,8 @@ function checkForWin(){
     } else{
         dagronMsg = 'With that last spear the Dagron is overwhelmed, it falls dead to the ground.'
         gameOver = true
+        render()
+        return
     }
 }
 //if villagers or HP reaches 0
@@ -186,16 +211,10 @@ function checkForLoss(){
     }
     if(warriorCurrentHP <=0){
         gameOver = true
-        const victoryMsg = document.createElement('h2')
-        victoryMsg.innerText = `Seeing their most capable warrior lain low by the Dagron, the remaining ${villagersLeft} Villagers flee into the countryside.  Your heroic sacrifice would surely be remembered in song, if the Dagron hadn't burned all the instruments.`
-        const tippyTopEl = document.querySelector('#tippyTop')
-        tippyTopEl.appendChild('victoryMsg')}
+        warriorMsg = `Seeing their most capable warrior lain low by the Dagron, the remaining ${villagersLeft} Villagers flee into the countryside.  Your heroic sacrifice would surely be remembered in song, if the Dagron hadn't burned all the instruments.`}
     else{ if(villagersLeft <= 0){
             gameOver = true
-            const victoryMsg = document.createElement('h2')
-            warriorMsg = `You live to fight another day, but at what cost?  You may have survived, but the Village is lost.`
-            victoryMsg.innerText = "GAME OVER"
-            victoryMsg.insertAdjacentElement(afterend, h1)
+            warriorMsg = `You live to fight another day, but at what cost?  You may have survived, but the Village is lost.`          
             }
     }
 }
@@ -203,28 +222,31 @@ function checkForLoss(){
 function nextTurn(){
     incomingDmg = 0;
     warriorDmg = 0;
-    flying = false;
+    casualties = 0;
+    vitality = 0;
     shield = false;
     playerChoice = '';
-    casualties = 0;
-    dagronMsg = ''
-    warriorMsg = ''
+    dagronMsg = '';
+    warriorMsg = '';
 }
 
 //run through what happens when you click
 function handleClick(event){
     getPlayerChoice(event)
 //pass the id of the button to tell the computer what the player chose
-    if(playerChoice == resetButton){
+    if(playerChoice == 'resetButton'){
         resetGame()
         return}
 //check if game is already over
     else if(gameOver == true){
         dagronMsg = "GAME OVER"
         warriorMsg = "Would you like to play again?"
-        resetButtonEl.innerText = "Play Again?"}
+        resetButtonEl.innerText = "Play Again?"
+        render()
+        return
+    }
         // warrior has 4 play options: attack, defend, heal, flee
-    else if(playerChoice == 'attackButton'){
+    else if(playerChoice == 'attackButton' ){
         spearAttack()}
     else if(playerChoice == 'defendButton'){
         //defend =take cover, halves incoming damage this round
@@ -232,13 +254,15 @@ function handleClick(event){
     else if(playerChoice == 'healButton'){
             healthPot()}
     else if(playerChoice == 'fleeButton'){
-            runAway()}
+            runAway()
+            render()
+            return
+        }
     //check to see if the dragon will act
     checkForWin()
     //determine what the dragon is doing this round
     actionDie()
     checkForLoss()
-    console.log(dagronCurrentHP, warriorCurrentHP, villagersLeft)
     render()
     nextTurn()
 }
