@@ -16,20 +16,22 @@ There are 3 counters in the center of the screen:
 
 ## How it works
 The game renders a new round every time the player makes a choice, a 'click' on the action buttons or icons.
-    + Spear Attack damages the Dagron if it hits.
-    + Defend halves incoming damage this round, protects villagers from collapsing buildings.
-    + Heal restores some warrior HP.
-    + Fleeing is only for cowards.
+* Spear Attack damages the Dagron if it hits.
+* Defend halves incoming damage this round, protects villagers from collapsing buildings.
+* Heal restores some warrior HP.
+* Fleeing is only for cowards.
 The warrior's action resolves, then the Dagron performs a random action.
-    + Bite Attack only damages the player.
-    + Tail Attack damages the player and any villagers in the way.
-    + Flying takes the Dagron out of spear range for the next round.
-    + Dagron smashing buildings does not hurt the warrior but can cause a lot of casualties.
-    + Fire breath causes a lot of damage to the Warrior and random villagers, but the dragon must take time to breathe in deeply before it can use fire again.
+* Bite Attack only damages the player.
+* Tail Attack damages the player and any villagers in the way.
+* Flying takes the Dagron out of spear range for the next round.
+* Dagron smashing buildings does not hurt the warrior but can cause a lot of casualties.
+* Fire breath causes a lot of damage to the Warrior and random villagers, but the dragon must take time to breathe in deeply before it can use fire again.
 The game displays the consequences of the player and Dagron actions in the text window, and updates the game state on the counters.  When any of the 3 counters reaches 0 the game is done, whether in victory or defeat.
 
 ## How it was built
 I wanted to build a combat turn-based game with an art style like a vintage text-based adventure computer game, styled after Dungeons and Dragons using OGL mechanics like attack rolls.
+HTML will display the state of the game to the player, arranged with CSS styles that display the text adventure on a background image of the Dagron.
+Javascript supplies the interactive language for the game to respond to user input.
 1. Upon Loading it should display a message to the player "A terrifying Dagron has beset the village, is smashing buildings and eating villagers."
 And then a short how to play "ATTACK with spears to Slay the Dagron, Take Cover behind your shield to DEFEND against incoming damage, or Drink a Vitality Potion to HEAL."
 2. Below the messages will be 4 buttons: a spear labeled ATTACK, a shield labeled DEFEND, a bottle labeled HEAL, and a winged foot labeled FLEE.
@@ -43,11 +45,16 @@ And then a short how to play "ATTACK with spears to Slay the Dagron, Take Cover 
 6. The function handleClick() will trigger each time the buttons are clicked,
 it will fire off other functions based on which button the player chose.  If gameOver = true, dragonMsg = "GAME OVER", set the reset button text to "PLAY AGAIN?" with bigger text, darken the choice buttons
     1. FLEE= skip down to display a defeat message
-    1. HEAL= random dragon action(random amount of damage and casualties, check shield=true/false, update dragonMsg), check for loss (cuts out, update message), add health, warriorMsg = "You healed for (number)"
-    1. ATTACK= random dragon acion, check for loss, warrior attack(check if flying=true, attack roll, damage roll), subtract damage from dagron.health
-    1. DEFEND= set shield= true, random dragon action, if you survive warrior message= "But due to your quick thinking your shield protects you and you take only (number) damage.", check for loss
-    1. update the counters
-    1. check for victory(update message)
+    2. HEAL= random dragon action(random amount of damage and casualties, check shield=true/false, update dragonMsg), check for loss (cuts out, update message), add health, warriorMsg = "You healed for (number)"
+    3. ATTACK= random dragon acion, check for loss, warrior attack(check if flying=true, attack roll, damage roll), subtract damage from dagron.health
+    4. DEFEND= set shield= true, random dragon action, if you survive warrior message= "But due to your quick thinking your shield protects you and you take only (number) damage.", check for loss
+    5. update the counters
+    6. check for victory(update message)
         display "The battle rages, choose again."
-    1. At the bottom is a "Reset Game" button that changes
+    7. At the bottom is a "Reset Game" button that changes
 Finally I added a fun easter egg: if you hover over the Dagron picture text displays telling you to click for a sound, and the game plays a Dagron Roar .wav file.
+## Accessability Concerns
+    1. Checked the background hue vs. font of the least contrasting areas (dark red on tan) into a contrast checking site and achieved 5.7, which exceeds AA compliance to The W3C Web Content Accessibility Guidelines 2.0 [Contrast Test](https://webaim.org/resources/contrastchecker/?fcolor=8B0000&bcolor=DEBF92)
+    2. Action buttons for the player: each action button and icon image which are clickable are at least 44pixels on the shortest size, which satisfies
+    3. Website functionality is operable by keyboard.
+

@@ -117,6 +117,7 @@ button{
   font-size: 4vh;
   min-width: 48px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .toolTipText {
