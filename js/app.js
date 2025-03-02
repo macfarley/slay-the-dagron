@@ -291,10 +291,10 @@ window.addEventListener("DOMContentLoaded", event => {
   });
 
 //added a fun dragon roar from open source audio  
-dagronPictureEl.addEventListener('click', event =>{
-    const audio = document.querySelector('audio')
-    audio.volume = 0.2;
-    audio.play()
-} )
+// dagronPictureEl.addEventListener('click', event =>{
+//     const audio = document.querySelector('audio')
+//     audio.volume = 0.2;
+//     audio.play()
+// } )
 
 

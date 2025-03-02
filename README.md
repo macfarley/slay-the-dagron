@@ -1,27 +1,35 @@
 # slay-the-dagron
 #### Project Unit 1 General Assembly, a java game
-
+![screenshot](/img/slay-the-dagron-deployment1.png "Screenshot of game on local host")
 ## How to play
 Choose an action
-    + Attack (Spear)
-    + Defend (Shield)
-    + Drink a Healing Potion
-    + Flee (boots)
-
+* Attack (Spear)
+* Defend (Shield)
+* Heal (Potion)
+* Flee (boots)
+* Reset Game (this also runs on page reload)
 ### How to Win
-Bring the Dagron to 0HP before yours run out, and before the Dagron kills all the villagers.  The surviving villagers becomes your score.
+There are 3 counters in the center of the screen:
+    1. Dagron HP, you win when you bring the dragon to 0 or below health. VICTORY will display.
+    1. Warrior HP, this is you, the player.  If your health drops to 0 or below you lose. GAME OVER
+    1. Villagers Left, they are the reason you fight.  Without anybody to defend, you are lost and GAME OVER.
 
 ## How it works
-Each round 'click', the dragon performs a random action
-it might damage the player, and/or kill some villagers
-Attack throws a spear, damages the Dagron
-Defend halves incoming damage this round
-Heal restores some player HP
-Fleeing is only for cowards
-the game displays if the game is over or continues
+The game renders a new round every time the player makes a choice, a 'click' on the action buttons or icons.
+    + Spear Attack damages the Dagron if it hits.
+    + Defend halves incoming damage this round, protects villagers from collapsing buildings.
+    + Heal restores some warrior HP.
+    + Fleeing is only for cowards.
+The warrior's action resolves, then the Dagron performs a random action.
+    + Bite Attack only damages the player.
+    + Tail Attack damages the player and any villagers in the way.
+    + Flying takes the Dagron out of spear range for the next round.
+    + Dagron smashing buildings does not hurt the warrior but can cause a lot of casualties.
+    + Fire breath causes a lot of damage to the Warrior and random villagers, but the dragon must take time to breathe in deeply before it can use fire again.
+The game displays the consequences of the player and Dagron actions in the text window, and updates the game state on the counters.  When any of the 3 counters reaches 0 the game is done, whether in victory or defeat.
 
 ## How it was built
-I want to build a combat turn-based game with an art style like a vintage text-based adventure computer game, styled after Dungeons and Dragons.
+I wanted to build a combat turn-based game with an art style like a vintage text-based adventure computer game, styled after Dungeons and Dragons using OGL mechanics like attack rolls.
 1. Upon Loading it should display a message to the player "A terrifying Dagron has beset the village, is smashing buildings and eating villagers."
 And then a short how to play "ATTACK with spears to Slay the Dagron, Take Cover behind your shield to DEFEND against incoming damage, or Drink a Vitality Potion to HEAL."
 2. Below the messages will be 4 buttons: a spear labeled ATTACK, a shield labeled DEFEND, a bottle labeled HEAL, and a winged foot labeled FLEE.
@@ -42,7 +50,4 @@ it will fire off other functions based on which button the player chose.  If gam
     1. check for victory(update message)
         display "The battle rages, choose again."
     1. At the bottom is a "Reset Game" button that changes
-
-> If there's time I'll add a high score list, a classic 3 letter arcade style. on a victory it offers the player a dialog box, post alongside the "score" of villagers saved.
-
-> If there's time I'll also add a spear counter, if the player runs out they're forced to flee
+Finally I added a fun easter egg: if you hover over the Dagron picture text displays telling you to click for a sound, and the game plays a Dagron Roar .wav file.
