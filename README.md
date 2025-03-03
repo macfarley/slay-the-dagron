@@ -2,6 +2,8 @@
 #### Project Unit 1 General Assembly, a java game
 ![screenshot](/img/slay-the-dagron-deployment1.png "Screenshot of game on local host")
 ## How to play
+[Live Deploy of Game Here](https://macfarley.github.io/slay-the-dagron/)
+
 Choose an action
 * Attack (Spear)
 * Defend (Shield)
@@ -10,9 +12,9 @@ Choose an action
 * Reset Game (this also runs on page reload)
 ### How to Win
 There are 3 counters in the center of the screen:
-    1. Dagron HP, you win when you bring the dragon to 0 or below health. VICTORY will display.
-    1. Warrior HP, this is you, the player.  If your health drops to 0 or below you lose. GAME OVER
-    1. Villagers Left, they are the reason you fight.  Without anybody to defend, you are lost and GAME OVER.
+1. Dagron HP, you win when you bring the dragon to 0 or below health. VICTORY will display.
+1. Warrior HP, this is you, the player.  If your health drops to 0 or below you lose. GAME OVER
+1. Villagers Left, they are the reason you fight.  Without anybody to defend, you are lost and GAME OVER.
 
 ## How it works
 The game renders a new round every time the player makes a choice, a 'click' on the action buttons or icons.
@@ -44,17 +46,19 @@ And then a short how to play "ATTACK with spears to Slay the Dagron, Take Cover 
 5. The winning/losing state is determined by 3 counters displayed to the user: Player HP, Dagron HP, Villagers remaning. A function will check each counter against <=0 after each click on any of the 4 buttons.
 6. The function handleClick() will trigger each time the buttons are clicked,
 it will fire off other functions based on which button the player chose.  If gameOver = true, dragonMsg = "GAME OVER", set the reset button text to "PLAY AGAIN?" with bigger text, darken the choice buttons
-    1. FLEE= skip down to display a defeat message
-    2. HEAL= random dragon action(random amount of damage and casualties, check shield=true/false, update dragonMsg), check for loss (cuts out, update message), add health, warriorMsg = "You healed for (number)"
-    3. ATTACK= random dragon acion, check for loss, warrior attack(check if flying=true, attack roll, damage roll), subtract damage from dagron.health
-    4. DEFEND= set shield= true, random dragon action, if you survive warrior message= "But due to your quick thinking your shield protects you and you take only (number) damage.", check for loss
-    5. update the counters
-    6. check for victory(update message)
+1. FLEE= skip down to display a defeat message
+2. HEAL= random dragon action(random amount of damage and casualties, check shield=true/false, update dragonMsg), check for loss (cuts out, update message), add health, warriorMsg = "You healed for (number)"
+3. ATTACK= random dragon acion, check for loss, warrior attack(check if flying=true, attack roll, damage roll), subtract damage from dagron.health
+4. DEFEND= set shield= true, random dragon action, if you survive warrior message= "But due to your quick thinking your shield protects you and you take only (number) damage.", check for loss
+5. update the counters
+6. check for victory(update message)
         display "The battle rages, choose again."
-    7. At the bottom is a "Reset Game" button that changes
-Finally I added a fun easter egg: if you hover over the Dagron picture text displays telling you to click for a sound, and the game plays a Dagron Roar .wav file.
+7. At the bottom is a "Reset Game" button that changes
+8. Finally I added a fun easter egg: if you hover over the Dagron picture text displays telling you to click for a sound, and the game plays a Dagron Roar .wav file.
 ## Accessability Concerns
-    1. Checked the background hue vs. font of the least contrasting areas (dark red on tan) into a contrast checking site and achieved 5.7, which exceeds AA compliance to The W3C Web Content Accessibility Guidelines 2.0 [Contrast Test](https://webaim.org/resources/contrastchecker/?fcolor=8B0000&bcolor=DEBF92)
-    2. Action buttons for the player: each action button and icon image which are clickable are at least 44pixels on the shortest size, which satisfies
-    3. Website functionality is operable by keyboard.
+1. Checked the background hue vs. font of the least contrasting areas (dark red on tan) into a contrast checking site and achieved 5.7, which exceeds AA compliance to The W3C Web Content Accessibility Guidelines 2.0 
+[contrast test](https://webaim.org/resources/contrastchecker/?fcolor=8B0000&bcolor=DEBF92)
+    
+2. Action buttons for the player: each action button and icon image which are clickable are at least 44pixels on the shortest size, which satisfies 
+3. Website functionality is operable by keyboard.
 
