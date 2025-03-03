@@ -7,7 +7,7 @@ const warrior = {
     villagers: 50,
 }
 const dagron = {
-    health: 1,
+    health: 200,
     defense: 18,
     attackRoll: 10,
 }
