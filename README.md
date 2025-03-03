@@ -65,4 +65,6 @@ it will fire off other functions based on which button the player chose.  If gam
     
 2. Action buttons for the player: each action button and icon image which are clickable are at least 44pixels on the shortest size, which satisfies 
 3. Website functionality is operable by keyboard.
-
+## Attributions
+Special Thanks to: [Vecteezy](https://www.vecteezy.com/free-png/Spear) for Spear, Shield, Boots, Potion pngs, Parchment background.
+[freesound](https://freesound.org/s/789094/) for Eithra: Dragon-Cry by Kataoneon License: Attribution 4.0
