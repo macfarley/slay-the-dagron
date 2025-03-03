@@ -256,7 +256,7 @@ function handleClick(event){
         resetGame()
         return}
 //check if game is already over
-    else if(gameOver == true){
+    else if(gameOver == true||victory == true){
         dagronMsg = "GAME OVER"
         warriorMsg = "Would you like to play again?"
         resetButtonEl.innerText = "Play Again?"
