@@ -55,7 +55,7 @@ function updateMessage (){
 function updateGameState(){
     //update the stats
     dagronHpEl.innerText = dagronCurrentHP
-    villagerCountEl.innerText = Math.max(villagersLeft; 0);
+    villagerCountEl.innerText = Math.max(villagersLeft, 0);
     warriorHpEl.innerText = warriorCurrentHP
 }
 //recallable function to change the visible html text
