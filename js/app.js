@@ -77,7 +77,6 @@ const getPlayerChoice = (event) => {
     //where event is the click
         playerChoice = event.target.dataset.action;
         //the name of the thing you clicked
-        console.log(playerChoice)
     };
 //if the player chooses attack
 function spearAttack(){
@@ -86,10 +85,8 @@ function spearAttack(){
     //test attack roll vs defense, a hit meets or beats, roll damage
         if(warrior.attackRoll+ dTwenty() >= dagron.defense){
         warriorDmg = (dTen()+dTen())+4
-        console.log(`attack hits for ${warriorDmg}`)
         warriorMsg = `Your aim is true, your spear pierces the Dagron's hide doing ${warriorDmg} damage to the beast.`} 
         else{
-            console.log('attack misses')
         warriorMsg = "Your spear falls short. Quick, keep throwing!"}
     } else if(flying == true){
         warriorMsg = "The dragon flies out of range, your spears fall short. Quick, keep throwing!"
@@ -106,7 +103,6 @@ function defend(){
 function healthPot(){
     //10d6+10
     vitality = (dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix()+dSix())+10;
-    console.log(vitality +" HP healed")
     warriorMsg = `You feel a rush of vitality when you quaff a potion and heal for ${vitality} Hit Points`
     warriorCurrentHP = warriorCurrentHP+vitality
 }
@@ -128,7 +124,6 @@ function resetGame(){
     dagronMsg = "A legendary and ferocious Dagron is destroying the village and eating the villagers."
     warriorMsg = "Throw spears until the Dagron is defeated!"
     render()
-    console.log('game reset')
 }
 
 //stuff the dragon does
@@ -151,7 +146,6 @@ function biteAttack(){
         shield = false
         return}
         else{warriorCurrentHP = warriorCurrentHP - incomingDmg}
-        console.log("Dagron bites!")
     }
 function smashBuilding(){
     if(shield == true){
@@ -159,13 +153,10 @@ function smashBuilding(){
         shield = false;
     } else if(shield == false){
     casualties = dSix() +dSix()
-    console.log(`${casualties} smashed`)
     dagronMsg = `The dragon smashes a nearby building in a rage and ${casualties} villagers were crushed under the rubble.`
     villagersLeft = villagerCountEl.innerText - casualties
-    console.log('Dagron smash!')
 }}
 function fly(){
-    console.log('dragon flies')
     flying = true
     dagronMsg = "The draon takes flight and swoops out of range."
 }
@@ -177,7 +168,6 @@ function tailAttack(){
         villagersLeft = villagersLeft- casualties
         } else {
         dagronMsg = `You manage to dodge a sweep of the Dagron's tail.  If only the ${casualties} nearby villagers were as nimble as you.`
-        console.log("tail attack")
     }
     if(shield == true){
         warriorCurrentHP = warriorHpEl.innerText - Math.floor(incomingDmg/2)
@@ -191,7 +181,6 @@ function dragonFire(){
         incomingDmg = (dSix()+ dSix()+ dSix()+ dSix()+ dSix())
         //burnt villagers
         casualties = dSix()
-        console.log(`${incomingDmg} damage, ${casualties} killed`)
         dagronMsg = `A gout of white-hot flame erupts from the Dagron's maw, frying you inside your armor for ${incomingDmg} and scorching ${casualties} unlucky villagers.`
         breath = false
         villagersLeft = villagersLeft - casualties
@@ -199,13 +188,11 @@ function dragonFire(){
         if(shield == true){
             warriorCurrentHP = warriorCurrentHP - Math.floor(incomingDmg/2)}
                 else{warriorCurrentHP = warriorCurrentHP - incomingDmg}
-        console.log("dagron burns")
         return
     }else if(breath == false){
         //charge up breath, next 5 or 6 on action die breathes fire
             breath = true
             dagronMsg = "The Dagron rears back and a great wind fills its capacious lungs. Beware! The next burst of flame could come at any second."
-            console.log('dagron breathes in to charge his fire')
         }
 
     }
