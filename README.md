@@ -68,3 +68,5 @@ it will fire off other functions based on which button the player chose.  If gam
 ## Attributions
 Special Thanks to: [Vecteezy](https://www.vecteezy.com/free-png/Spear) for Spear, Shield, Boots, Potion pngs, Parchment background.
 [freesound](https://freesound.org/s/789094/) for Eithra: Dragon-Cry by Kataoneon License: Attribution 4.0
+## Stretch Goals
+In the future I intend to add a more variable start state for different difficulty levels.
