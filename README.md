@@ -76,4 +76,5 @@ Special Thanks to:
 [Gary Gygax](https://www.dndbeyond.com/resources/1781-systems-reference-document-srd?srsltid=AfmBOorZaa0t9Y_SFHkjgPWAzsP0dNs1M2kpZ1VDyLcEYfRJ_Y7Ne_F7) for all his contributions to geek culture starting with the original Dungeons and Dragons.
 ![firstEditionRules](./img/old-school-dnd.PNG)
 ## Stretch Goals
-In the future I intend to add a more variable start state for different difficulty levels.
+In the future I intend to add a more variable start state for different difficulty levels, then expanding the franchise to other classic monsters like a Hydra, Minotaur, the deadly Gazebo.
+For features I would like to add more sound with a mute button option, as well as a dark or high-contrast mode.
